@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="267dp"
+        android:layout_marginEnd="156dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:counterTextColor="@color/dark_red">
+
+        <EditText
+            android:id="@+id/usernameLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_alignStart="@+id/imageView"
+            android:layout_marginStart="-54dp"
+            android:layout_marginTop="23dp"
+            android:ems="10"
+            android:hint="username"
+            android:inputType="textPersonName"
+            android:textColorHint="#F1EFEF" />
+
+        <EditText
+            android:id="@+id/passwrdLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_alignStart="@+id/imageView"
+            android:layout_marginStart="-56dp"
+            android:layout_marginTop="87dp"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPersonName"
+            android:textColorHint="#F1EFEF" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonLog"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwrdLog"
+        android:layout_alignStart="@+id/passwrdLog"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:text="LOGIN"
+        android:textColor="@colors/black"
+        app:backgroundTint="#00BCD4"
+        app:backgroundTintMode="src_in"
+        tools:ignore="NotSibling" />
+</RelativeLayout>
