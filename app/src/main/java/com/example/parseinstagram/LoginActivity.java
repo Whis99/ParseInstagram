@@ -2,12 +2,18 @@ package com.example.parseinstagram;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "LoginActivity";
@@ -41,7 +47,24 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginUser(String username, String password){
         Log.i(TAG, "Attempting to login user " + username);
-        // Todo
+        ParseUser.logInInBackground(username, password, new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException e) {
+                if(e != null){
+                    Log.e(TAG, "Issue with login", e);
+                    Toast.makeText(LoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT);
+                    return;
+                }
+                toMainActivity();
+                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT);
+            }
+        });
 
+    }
+
+    private void toMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
