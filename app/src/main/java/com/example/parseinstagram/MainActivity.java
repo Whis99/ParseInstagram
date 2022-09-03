@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         pictureBtn = findViewById(R.id.picBtn);
         submitBtn = findViewById(R.id.submitBtn);
         
-//        queryPost();
+        queryPost();
 
         pictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
