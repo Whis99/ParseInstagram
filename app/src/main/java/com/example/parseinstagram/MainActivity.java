@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         pictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Launching camera", Toast.LENGTH_SHORT).show();
                 launchCamera();
             }
         });

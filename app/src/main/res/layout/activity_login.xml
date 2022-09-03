@@ -57,6 +57,13 @@
                 android:layout_height="wrap_content"
                 android:text="LOGIN"
                 app:backgroundTint="#03A9F4" />
+
+            <Button
+                android:id="@+id/buttonSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SIGN UP"
+                app:backgroundTint="#34B339" />
         </LinearLayout>
     </com.google.android.material.textfield.TextInputLayout>
 

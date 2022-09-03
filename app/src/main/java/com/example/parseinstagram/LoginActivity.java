@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userLog;
     private EditText passLog;
     private Button logBtn;
+    private Button signUpBtn;
     private ImageView img;
     Context context;
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         userLog = findViewById(R.id.usernameLog);
         passLog = findViewById(R.id.passwrdLog);
         logBtn = findViewById(R.id.buttonLog);
+        signUpBtn = findViewById(R.id.buttonSignUp);
         img = findViewById(R.id.logoImage);
 
         Glide.with(this)
