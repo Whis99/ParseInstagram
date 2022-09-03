@@ -9,59 +9,56 @@
 
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="130dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="267dp"
-        android:layout_marginEnd="156dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="142dp"
+        tools:srcCompat="@drawable/insta" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
+        android:layout_below="@+id/logoImage"
+        android:layout_marginTop="0dp"
         app:counterTextColor="@color/dark_red">
 
-        <EditText
-            android:id="@+id/usernameLog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
-            android:layout_alignStart="@+id/imageView"
-            android:layout_marginStart="-54dp"
-            android:layout_marginTop="23dp"
-            android:ems="10"
-            android:hint="username"
-            android:inputType="textPersonName"
-            android:textColorHint="#F1EFEF" />
 
-        <EditText
-            android:id="@+id/passwrdLog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
-            android:layout_alignStart="@+id/imageView"
-            android:layout_marginStart="-56dp"
-            android:layout_marginTop="87dp"
-            android:ems="10"
-            android:hint="password"
-            android:inputType="textPersonName"
-            android:textColorHint="#F1EFEF" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/usernameLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/userhint"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"/>
+
+            <EditText
+                android:id="@+id/passwrdLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/passhint"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"/>
+
+            <Button
+                android:id="@+id/buttonLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOGIN"
+                app:backgroundTint="#03A9F4" />
+        </LinearLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonLog"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwrdLog"
-        android:layout_alignStart="@+id/passwrdLog"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:text="LOGIN"
-        android:textColor="@colors/black"
-        app:backgroundTint="#00BCD4"
-        app:backgroundTintMode="src_in"
-        tools:ignore="NotSibling" />
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.parseinstagram;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passLog;
     private Button logBtn;
     private ImageView img;
+    Context context;
 
 
     @Override
@@ -32,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         passLog = findViewById(R.id.passwrdLog);
         logBtn = findViewById(R.id.buttonLog);
         img = findViewById(R.id.logoImage);
+
+        Glide.with(this)
+                .load(R.drawable.insta)
+                .into(img);
 
         logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
