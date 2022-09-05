@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:hint="Description"
         app:hintEnabled="true"
-        app:hintTextAppearance="@style/TextAppearance.AppCompat.Display2"
         app:hintTextColor="#757373">
 
         <EditText
