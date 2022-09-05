@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "LoginActivity";
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 .load(R.drawable.insta)
                 .into(img);
 
+        // login button click
         logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +54,36 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // signup button click
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick signUp button");
+                String username = userLog.getText().toString();
+                String password = passLog.getText().toString();
+                signUpUser(username, password);
+            }
+        });
+    }
+
+    private void signUpUser(String username, String password) {
+        Log.i(TAG, "Attempting to user signIn " + username);
+        ParseUser user = new ParseUser();
+        // Set core properties
+        user.setUsername(username);
+        user.setPassword(password);
+
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with signUp", e);
+                    Toast.makeText(LoginActivity.this, "Issue with signUp", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // Go to the main activity
+                toMainActivity();
+            }
+        });
     }
 
     private void loginUser(String username, String password){
@@ -64,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT);
                     return;
                 }
+                // Go to the main activity
                 toMainActivity();
                 Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT);
             }
