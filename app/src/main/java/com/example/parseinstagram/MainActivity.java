@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText descriptionEditText;
     private Button pictureBtn;
     private Button submitBtn;
+    private Button logOutbtn;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 25;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    Context context;
 
 
     @Override
@@ -59,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
         descriptionEditText = findViewById(R.id.descriptionImg);
         pictureBtn = findViewById(R.id.picBtn);
         submitBtn = findViewById(R.id.submitBtn);
-        
+        logOutbtn = findViewById(R.id.logOutBtn);
+
         queryPost();
 
+        // Camera button click
         pictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Submit button click
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +93,18 @@ public class MainActivity extends AppCompatActivity {
                 savePost(Description, currentUser);
             }
         });
+
+        // Log out button
+        logOutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                Log.i(TAG, "Logout");
+            }
+        });
+
     }
 
     private void launchCamera() {

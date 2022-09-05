@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -17,8 +16,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="description"
+        android:hint="Description"
         app:hintEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Display2"
         app:hintTextColor="#757373">
 
         <EditText
@@ -42,7 +42,7 @@
             android:layout_weight="1"
             app:backgroundTint="#03A9F4"
             app:cornerRadius="10dp"
-            app:icon="@drawable/ic_baseline_camera_24"
+            app:icon="@drawable/ic_baseline_camera_alt_24"
             app:iconGravity="textEnd" />
 
         <Space
@@ -59,5 +59,16 @@
             app:cornerRadius="10dp"
             app:icon="@drawable/ic_baseline_send_24"
             app:iconGravity="textEnd" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOG OUT"
+        app:backgroundTint="#DC9C9C9C"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp" />
+
 </LinearLayout>
