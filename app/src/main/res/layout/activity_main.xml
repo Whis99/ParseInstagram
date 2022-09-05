@@ -7,11 +7,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:visibility="invisible" />
+
     <ImageView
         android:id="@+id/imageInput"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        tools:srcCompat="@drawable/ic_baseline_image_24" />
+        tools:srcCompat="@drawable/ic_baseline_image_24"
+        android:visibility="gone"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -40,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:backgroundTint="#03A9F4"
+            app:backgroundTint="#DC9C9C9C"
             app:cornerRadius="10dp"
             app:icon="@drawable/ic_baseline_camera_alt_24"
             app:iconGravity="textEnd" />
@@ -55,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:backgroundTint="#03A9F4"
+            app:backgroundTint="#DC9C9C9C"
             app:cornerRadius="10dp"
             app:icon="@drawable/ic_baseline_send_24"
             app:iconGravity="textEnd" />

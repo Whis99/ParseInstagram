@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Button pictureBtn;
     private Button submitBtn;
     private Button logOutbtn;
+    private ProgressBar progressBar;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 25;
     private File photoFile;
     public String photoFileName = "photo.jpg";
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         pictureBtn = findViewById(R.id.picBtn);
         submitBtn = findViewById(R.id.submitBtn);
         logOutbtn = findViewById(R.id.logOutBtn);
+        progressBar = findViewById(R.id.pbLoading);
 
         queryPost();
 
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Launching camera", Toast.LENGTH_SHORT).show();
                 launchCamera();
+                postImg.setVisibility(View.VISIBLE);
             }
         });
 
@@ -163,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void savePost(String description, ParseUser currentUser) {
+        // Show progress bar
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         Post post = new Post();
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
@@ -177,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "Post was saved succesfully");
                 descriptionEditText.setText("");
                 postImg.setImageResource(0);
+                // Hide progress bar
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }
