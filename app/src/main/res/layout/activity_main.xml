@@ -67,6 +67,7 @@
             app:backgroundTint="#DC9C9C9C"
             app:cornerRadius="10dp"
             app:icon="@drawable/ic_baseline_send_24"
+            android:textColor="@color/black"
             app:iconGravity="textEnd" />
 
     </LinearLayout>
