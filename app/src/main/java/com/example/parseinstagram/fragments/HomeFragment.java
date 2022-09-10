@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.parseinstagram.Post;
+import com.example.parseinstagram.PostsAdapter;
 import com.example.parseinstagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,6 +25,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
     private RecyclerView rvPosts;
+    PostsAdapter adapter;
 
     public HomeFragment() {
         // Required empty public constructor
