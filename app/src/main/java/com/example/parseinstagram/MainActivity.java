@@ -1,5 +1,6 @@
 package com.example.parseinstagram;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 25;
     private File photoFile;
     public String photoFileName = "photo.jpg";
-    Context context;
+    private BottomNavigationView bottomNavigation;
 
 
     @Override
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         submitBtn = findViewById(R.id.submitBtn);
         logOutbtn = findViewById(R.id.logOutBtn);
         progressBar = findViewById(R.id.pbLoading);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
         queryPost();
 
@@ -95,6 +99,25 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(Description, currentUser);
+            }
+        });
+
+        // Bottom navigation icon selected
+        bottomNavigation.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        // do something here
+                        return true;
+                    case R.id.addPic:
+                        // do something here
+                        return true;
+                    case R.id.account:
+                        // do something here
+                        return true;
+                    default: return true;
+                }
             }
         });
 
