@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -19,13 +20,15 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
     private RecyclerView rvPosts;
-    PostsAdapter adapter;
+    private PostsAdapter adapter;
+    private List<Post> allPosts;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -39,13 +42,20 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvPosts = view.findViewById(R.id.rvPosts);
 
+        allPosts = new ArrayList<>();
+        adapter = new PostsAdapter(getContext(), allPosts);
+
+        // Setting adapter on the recycler view
+        rvPosts.setAdapter(adapter);
 
         // Setting layout manager on Recycler View
+        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
 
 
@@ -65,6 +75,8 @@ public class HomeFragment extends Fragment {
                     Log.i(TAG, "Post" + post.getDescription() + ",  username: " + post.getUser().getUsername());
 
                 }
+                allPosts.addAll(posts);
+                adapter.notifyDataSetChanged();
             }
         });
     }
