@@ -50,9 +50,7 @@ public class CameraFragment extends Fragment {
     public String photoFileName = "photo.jpg";
 
 
-    public CameraFragment() {
-        // Required empty public constructor
-    }
+    public CameraFragment() {}
     
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,

@@ -22,9 +22,7 @@ public class AccountFragment extends Fragment {
     public static final String TAG = "AccountFragment";
     private Button logOutbtn;
 
-    public AccountFragment() {
-        // Required empty public constructor
-    }
+    public AccountFragment() {}
 
 
     @Override
