@@ -60,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.account:
                     default:
-                        fragment = account;
+                        fragment = new ProfileFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
-        bottomNavigation.setSelectedItemId(R.id.addPic);
+        bottomNavigation.setSelectedItemId(R.id.home);
 
     }
 }

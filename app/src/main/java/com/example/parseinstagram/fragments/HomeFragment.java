@@ -27,8 +27,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
     private RecyclerView rvPosts;
-    private PostsAdapter adapter;
-    private List<Post> allPosts;
+    protected PostsAdapter adapter;
+    protected List<Post> allPosts;
 
     public HomeFragment() {
         // Required empty public constructor
