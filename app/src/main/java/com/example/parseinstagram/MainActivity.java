@@ -18,7 +18,6 @@ import com.parse.ParseObject;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    private Button logOutbtn;
     private BottomNavigationView bottomNavigation;
 
 
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        logOutbtn = findViewById(R.id.logOutBtn);
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
@@ -44,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
         final Fragment home = new HomeFragment();
         final Fragment camera = new CameraFragment();
         final Fragment account = new AccountFragment();
-
-//        queryPost();
-
-
 
 
         // Bottom navigation icon selected
@@ -75,35 +69,5 @@ public class MainActivity extends AppCompatActivity {
         });
         bottomNavigation.setSelectedItemId(R.id.addPic);
 
-//        // Log out button
-//        logOutbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ParseUser.logOut();
-//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//                Log.i(TAG, "Logout");
-//            }
-//        });
-//
-//    }
-
-
-//    private void queryPost() {
-//        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-//        query.include(Post.KEY_USER);
-//        query.findInBackground(new FindCallback<Post>() {
-//            @Override
-//            public void done(List<Post> posts, ParseException e) {
-//                if(e != null){
-//                    Log.e(TAG, "Issue with getting posts", e);
-//                    return;
-//                }
-//                for(Post post: posts){
-//                    Log.i(TAG, "Post" + post.getDescription() + ",  username: " + post.getUser().getUsername());
-//
-//                }
-//            }
-//        });
     }
 }

@@ -53,14 +53,6 @@ public class CameraFragment extends Fragment {
     public CameraFragment() {
         // Required empty public constructor
     }
-
-
-//    public static CameraFragment newInstance(String param1, String param2) {
-//        CameraFragment fragment = new CameraFragment();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
     
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -210,6 +202,5 @@ public class CameraFragment extends Fragment {
             }
         });
     }
-
 
 }
