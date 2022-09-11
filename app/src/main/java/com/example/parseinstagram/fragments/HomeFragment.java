@@ -48,8 +48,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
 
 
         rvPosts = view.findViewById(R.id.rvPosts);
