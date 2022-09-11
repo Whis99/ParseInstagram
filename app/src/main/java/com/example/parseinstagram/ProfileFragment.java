@@ -3,6 +3,7 @@ package com.example.parseinstagram;
 import android.util.Log;
 
 import com.example.parseinstagram.fragments.HomeFragment;
+import com.example.parseinstagram.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

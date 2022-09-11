@@ -23,19 +23,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.parseinstagram.MainActivity;
-import com.example.parseinstagram.Post;
+import com.example.parseinstagram.models.Post;
 import com.example.parseinstagram.R;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
-
 
 
 public class CameraFragment extends Fragment {

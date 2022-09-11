@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.parseinstagram.Post;
+import com.example.parseinstagram.models.Post;
 import com.example.parseinstagram.adapters.PostsAdapter;
 import com.example.parseinstagram.R;
 import com.parse.FindCallback;
