@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.account:
                     default:
-                        fragment = new ProfileFragment();
+                        fragment = account;
+//                        fragment = new ProfileFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();

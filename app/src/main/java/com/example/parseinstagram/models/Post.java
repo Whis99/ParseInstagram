@@ -16,6 +16,10 @@ public class Post extends ParseObject {
         return getString(KEY_DESCRIPTION);
     }
 
+    public String getCreation(){
+        return getString(KEY_CREATED_KEY);
+    }
+
     public void setDescription(String description){
         put(KEY_DESCRIPTION, description);
     }

@@ -45,7 +45,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-
         return posts.size();
     }
 
@@ -64,7 +63,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView userName;
         private TextView description;
+        private TextView postCreation;
         private ImageView picture;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -72,7 +73,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             userName = itemView.findViewById(R.id.userName);
             description = itemView.findViewById(R.id.postDescription);
             picture = itemView.findViewById(R.id.postImg);
-
+            postCreation = itemView.findViewById(R.id.postTime);
 
         }
 
@@ -80,6 +81,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             // Bind the post data to the view elements
             userName.setText(post.getUser().getUsername());
             description.setText(post.getDescription());
+            postCreation.setText(post.getCreation() + " minutes ago");
+
             ParseFile image = post.getImage();
             if(image != null){
                 Glide.with(context)
