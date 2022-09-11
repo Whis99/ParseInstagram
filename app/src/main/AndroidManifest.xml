@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
+
         <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -17,10 +18,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ig_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic = "true"
         android:roundIcon="@mipmap/ig_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ParseInstagram">
+        android:theme="@style/Theme.ParseInstagram"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".PostActivity"
+            android:exported="true" />
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -31,20 +35,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider" />
         </provider>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-    </activity>
-        <activity
-            android:name=".MainActivity" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.parse.SERVER_URL"

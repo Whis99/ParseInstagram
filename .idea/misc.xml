@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/drawable/ic_save_tag_full.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/activity_post.xml" value="0.18478260869565216" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.18478260869565216" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.18478260869565216" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18478260869565216" />

@@ -48,9 +48,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
-
         rvPosts = view.findViewById(R.id.rvPosts);
 
         allPosts = new ArrayList<>();

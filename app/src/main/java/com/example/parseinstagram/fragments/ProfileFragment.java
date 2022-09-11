@@ -1,4 +1,4 @@
-package com.example.parseinstagram;
+package com.example.parseinstagram.fragments;
 
 import android.util.Log;
 
