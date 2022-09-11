@@ -50,12 +50,7 @@ public class HomeFragment extends Fragment {
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-//
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow);
-//        getSupportActionBar().setLogo(R.drawable.ic_baseline_camera_alt_24);
-//        getSupportActionBar().setDisplayUseLogoEnabled(true);
-//        getSupportActionBar().setTitle("   Tweet");
+
 
         rvPosts = view.findViewById(R.id.rvPosts);
 

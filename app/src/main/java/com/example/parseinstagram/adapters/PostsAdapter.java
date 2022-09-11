@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
 import com.example.parseinstagram.R;
 import com.parse.ParseFile;
@@ -75,13 +76,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             picture = itemView.findViewById(R.id.postImg);
             postCreation = itemView.findViewById(R.id.postTime);
 
+
+
         }
 
         public void bind(Post post) {
+            String timeFormat = TimeFormatter.getTimeDifference(post.getCreatedAt().toString());
             // Bind the post data to the view elements
             userName.setText(post.getUser().getUsername());
             description.setText(post.getDescription());
-            postCreation.setText(post.getCreation() + " minutes ago");
+            postCreation.setText(timeFormat + " ago");
 
             ParseFile image = post.getImage();
             if(image != null){
