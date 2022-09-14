@@ -57,31 +57,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/picBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:backgroundTint="#DC9C9C9C"
-            app:cornerRadius="10dp"
-            app:icon="@drawable/ic_baseline_camera_alt_24"
-            app:iconGravity="textEnd" />
+            android:src="@drawable/ic_baseline_camera_alt_24" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.1" />
 
-        <Button
+        <ImageButton
             android:id="@+id/submitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
-            app:backgroundTint="#DC9C9C9C"
-            app:cornerRadius="10dp"
-            app:icon="@drawable/ic_baseline_send_24"
-            app:iconGravity="textEnd" />
+            android:src="@drawable/ic_baseline_send_24" />
 
     </LinearLayout>
 

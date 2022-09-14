@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -37,8 +38,8 @@ public class CameraFragment extends Fragment {
     public static final String TAG = "CameraFragment";
     private ImageView postImg;
     private EditText descriptionEditText;
-    private Button pictureBtn;
-    private Button submitBtn;
+    private ImageButton pictureBtn;
+    private ImageButton submitBtn;
     private ProgressBar progressBar;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 25;
     private File photoFile;

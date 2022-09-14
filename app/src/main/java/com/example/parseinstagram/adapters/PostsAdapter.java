@@ -82,7 +82,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             String timeFormat = TimeFormatter.getTimeDifference(post.getCreatedAt().toString());
             // Bind the post data to the view elements
             userName.setText(post.getUser().getUsername());
-            description.setText(post.getDescription());
+            String username = post.getUser().getUsername();
+            description.setText(username + ": " +post.getDescription());
             postCreation.setText(timeFormat + " ago");
 
             ParseFile image = post.getImage();
