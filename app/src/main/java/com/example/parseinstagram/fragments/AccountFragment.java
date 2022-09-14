@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.parseinstagram.LoginActivity;
 import com.example.parseinstagram.R;
 import com.example.parseinstagram.adapters.PostsAdapter;
@@ -39,6 +41,8 @@ public class AccountFragment extends Fragment {
     private List<Post> acc_allPosts;
     private RecyclerView acc_rvPosts;
     private Post post;
+
+//    String profile = ParseUser.getCurrentUser().getParseFile(Post.KEY_USER).getUrl();
 
     public AccountFragment() {}
 
@@ -68,7 +72,14 @@ public class AccountFragment extends Fragment {
         acc_rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
 
-        acc_UserName.setText(post.getUser().getUsername());
+//        if(profile != null){
+//            Glide.with(getContext())
+//                    .load(profile)
+//                    .transform(new RoundedCorners(30))
+//                    .into(acc_Profile);
+//        }
+
+        acc_UserName.setText(ParseUser.getCurrentUser().getUsername());
 
         // Log out button
         logOutbtn.setOnClickListener(new View.OnClickListener() {
