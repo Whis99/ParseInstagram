@@ -11,30 +11,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.parseinstagram.R;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
-import com.example.parseinstagram.R;
 import com.parse.ParseFile;
 
 import java.util.List;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHolder>{
 
     private Context context;
     private List<Post> posts;
 
-    public PostsAdapter(Context context, List<Post> posts) {
+    public AccountAdapter(Context context, List<Post> posts){
         this.context = context;
         this.posts = posts;
     }
-
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_post, parent, false);
+                .inflate(R.layout.item_post_account, parent, false);
         return new ViewHolder(view);
     }
 
@@ -49,50 +48,31 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
-    // Method to clean all elements of the recycler
-    public void clear(){
-        posts.clear();
-        notifyDataSetChanged();
-    }
-
-    // Method to add a list of Posts -- change to type used
-    public void addAll(List<Post> postList){
-        posts.addAll(postList);
-        notifyDataSetChanged();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView userName;
-        private TextView description;
-        private TextView postCreation;
-        private ImageView picture;
-
-
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        private TextView accountPostDescription;
+        private TextView accountPostCreation;
+        private ImageView accountPostContent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            userName = itemView.findViewById(R.id.userName);
-            description = itemView.findViewById(R.id.postDescription);
-            picture = itemView.findViewById(R.id.postImg);
-            postCreation = itemView.findViewById(R.id.accountPostTime);
-
+            accountPostDescription = itemView.findViewById(R.id.accountPostDescription);
+            accountPostContent = itemView.findViewById(R.id.accountPostContent);
+            accountPostCreation = itemView.findViewById(R.id.accountPostTime);
         }
 
         public void bind(Post post) {
             String timeFormat = TimeFormatter.getTimeDifference(post.getCreatedAt().toString());
             // Bind the post data to the view elements
-            userName.setText(post.getUser().getUsername());
-            description.setText(post.getDescription());
-            postCreation.setText(timeFormat + " ago");
+            accountPostDescription.setText(post.getDescription());
+            accountPostCreation.setText(timeFormat + " ago");
 
             ParseFile image = post.getImage();
             if(image != null){
                 Glide.with(context)
                         .load(image.getUrl())
-                        .into(picture);
+                        .into(accountPostContent);
             }
         }
+
     }
-
-
 }
