@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.parseinstagram.PostActivity;
+import com.example.parseinstagram.UserAllPostActivity;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
 import com.example.parseinstagram.R;
@@ -70,7 +72,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView description;
         private TextView postCreation;
         private ImageView picture;
-        private Post post;
+        private LinearLayout container;
 
 
 
@@ -80,6 +82,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             description = itemView.findViewById(R.id.postDescription);
             picture = itemView.findViewById(R.id.postImg);
             postCreation = itemView.findViewById(R.id.accountPostTime);
+            container = itemView.findViewById(R.id.userContainer);
 
         }
 
@@ -107,6 +110,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     context.startActivity(intent);
                 }
             });
+
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UserAllPostActivity.class);
+                    intent.putExtra("UserPost", Parcels.wrap(post));
+                    context.startActivity(intent);
+                }
+            });
+
         }
     }
 

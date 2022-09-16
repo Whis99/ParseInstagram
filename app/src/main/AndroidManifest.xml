@@ -23,9 +23,11 @@
         android:theme="@style/Theme.ParseInstagram"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".PostActivity"
+            android:name=".UserAllPostActivity"
             android:exported="true" />
-        <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
+        <activity
+            android:name=".PostActivity"
+            android:exported="true" /> <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.codepath.fileprovider"
