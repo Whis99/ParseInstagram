@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.parseinstagram.PostActivity;
-import com.example.parseinstagram.UserAllPostActivity;
+//import com.example.parseinstagram.UserAllPostActivity;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
 import com.example.parseinstagram.R;
@@ -111,14 +111,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
-            container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, UserAllPostActivity.class);
-                    intent.putExtra("UserPost", Parcels.wrap(post));
-                    context.startActivity(intent);
-                }
-            });
+//            container.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(context, UserAllPostActivity.class);
+//                    intent.putExtra("UserPost", Parcels.wrap(post));
+//                    context.startActivity(intent);
+//                }
+//            });
 
         }
     }

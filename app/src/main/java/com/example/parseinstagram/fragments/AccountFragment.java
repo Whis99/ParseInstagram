@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.parseinstagram.LoginActivity;
 import com.example.parseinstagram.R;
+import com.example.parseinstagram.adapters.PostGVAdapter;
 import com.example.parseinstagram.adapters.PostsAdapter;
 import com.example.parseinstagram.models.Post;
 import com.parse.FindCallback;
@@ -37,9 +39,9 @@ public class AccountFragment extends Fragment {
     private TextView acc_UserName;
     private ImageView acc_Profile;
     private Button logOutbtn;
-    private PostsAdapter acc_adapter;
-    private List<Post> acc_allPosts;
-    private RecyclerView acc_rvPosts;
+    private PostGVAdapter user_adapter;
+    private ArrayList<Post> user_allPosts;
+    private GridView gvPost;
     private Post post;
 
 //    String profile = ParseUser.getCurrentUser().getParseFile(Post.KEY_USER).getUrl();
@@ -48,8 +50,7 @@ public class AccountFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
@@ -62,14 +63,15 @@ public class AccountFragment extends Fragment {
         acc_Profile = view.findViewById(R.id.accountProfile);
         acc_UserName = view.findViewById(R.id.accountUsername);
 
-        acc_rvPosts = view.findViewById(R.id.acc_rvPosts);
+        gvPost = view.findViewById(R.id.gvPost);
 
-        acc_allPosts = new ArrayList<>();
-        acc_adapter = new PostsAdapter(getContext(), acc_allPosts);
+        user_allPosts = new ArrayList<>();
+        user_adapter = new PostGVAdapter(getContext(), user_allPosts);
 
-        acc_rvPosts.setAdapter(acc_adapter);
+        // Setting adapter on the recycler view
+        gvPost.setAdapter(user_adapter);
 
-        acc_rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+//        gvPost.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
 
 //        if(profile != null){
@@ -111,8 +113,8 @@ public class AccountFragment extends Fragment {
                     Log.i(TAG, "Post" + post.getDescription() + ",  username: " + post.getUser().getUsername());
 
                 }
-                acc_allPosts.addAll(posts);
-                acc_adapter.notifyDataSetChanged();
+                user_allPosts.addAll(posts);
+                user_adapter.notifyDataSetChanged();
             }
         });
     }

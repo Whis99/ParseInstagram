@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
-
 import com.example.parseinstagram.fragments.AccountFragment;
 import com.example.parseinstagram.fragments.CameraFragment;
 import com.example.parseinstagram.fragments.HomeFragment;
