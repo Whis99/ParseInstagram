@@ -79,7 +79,6 @@ public class AccountFragment extends Fragment {
         // Setting adapter on the recycler view
         gvPost.setAdapter(user_adapter);
 
-//        gvPost.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
 
         if(profile != null){
