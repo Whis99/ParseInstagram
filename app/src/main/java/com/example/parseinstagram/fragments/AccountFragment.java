@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.parseinstagram.LoginActivity;
 import com.example.parseinstagram.R;
@@ -44,10 +45,16 @@ public class AccountFragment extends Fragment {
     private GridView gvPost;
     private Post post;
 
-//    String profile = ParseUser.getCurrentUser().getParseFile(Post.KEY_USER).getUrl();
 
     public AccountFragment() {}
 
+    public static AccountFragment newInstance(String title) {
+        AccountFragment frag = new AccountFragment();
+        Bundle args = new Bundle();
+        args.putString("title", title);
+        frag.setArguments(args);
+        return frag;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +65,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String profile = ParseUser.getCurrentUser().getParseFile("Profile").getUrl();
 
         logOutbtn = view.findViewById(R.id.logOutBtn);
         acc_Profile = view.findViewById(R.id.accountProfile);
@@ -74,12 +82,13 @@ public class AccountFragment extends Fragment {
 //        gvPost.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
 
-//        if(profile != null){
-//            Glide.with(getContext())
-//                    .load(profile)
-//                    .transform(new RoundedCorners(30))
-//                    .into(acc_Profile);
-//        }
+        if(profile != null){
+            Glide.with(getContext())
+                    .load(profile)
+                    .centerCrop()
+                    .transform(new RoundedCorners(20))
+                    .into(acc_Profile);
+        }
 
         acc_UserName.setText(ParseUser.getCurrentUser().getUsername());
 

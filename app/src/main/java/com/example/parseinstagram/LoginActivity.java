@@ -39,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         signUpBtn = findViewById(R.id.buttonSignUp);
         img = findViewById(R.id.logoImage);
 
+        if(ParseUser.getCurrentUser() != null){
+            toMainActivity();
+        }
+
         Glide.with(this)
                 .load(R.drawable.insta)
                 .into(img);
