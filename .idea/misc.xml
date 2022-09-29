@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.10104166666666667" />
+        <entry key="..\:/Users/Gus^_^/StudioProjects/ParseInstagram/app/src/main/res/layout/activity_user_all_post.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/Gus^_^/StudioProjects/ParseInstagram/app/src/main/res/layout/card_user_post.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/Gus^_^/StudioProjects/ParseInstagram/app/src/main/res/layout/fragment_account.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/Gus^_^/StudioProjects/ParseInstagram/app/src/main/res/layout/item_user_all_post.xml" value="0.22" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.20520833333333333" />
