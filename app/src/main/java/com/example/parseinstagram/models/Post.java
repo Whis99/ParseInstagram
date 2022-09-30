@@ -5,6 +5,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import org.json.JSONArray;
 import org.parceler.Parcel;
 
 @Parcel(analyze=Post.class)
@@ -14,13 +15,11 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
+    public static final String KEY_COMMENTS = "userComments";
+
 
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
-    }
-
-    public String getCreation(){
-        return getString(KEY_CREATED_KEY);
     }
 
     public void setDescription(String description){
@@ -41,5 +40,13 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user){
         put(KEY_USER, user);
+    }
+
+    public JSONArray getComments(){
+        return getJSONArray(KEY_COMMENTS);
+    }
+
+    public void setComments(Comment comments){
+        add(KEY_COMMENTS, comments);
     }
 }

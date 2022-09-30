@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,17 +17,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.parseinstagram.LoginActivity;
 import com.example.parseinstagram.R;
-import com.example.parseinstagram.adapters.PostGVAdapter;
-import com.example.parseinstagram.adapters.PostsAdapter;
+import com.example.parseinstagram.adapters.AccountAdapter;
 import com.example.parseinstagram.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +38,11 @@ public class AccountFragment extends Fragment {
     private TextView acc_UserName;
     private ImageView acc_Profile;
     private Button logOutbtn;
-    private PostGVAdapter user_adapter;
+    private AccountAdapter user_adapter;
     private ArrayList<Post> user_allPosts;
     private GridView gvPost;
-    private Post post;
+    private ParseUser user;
+    String profile;
 
 
     public AccountFragment() {}
@@ -65,7 +64,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String profile = ParseUser.getCurrentUser().getParseFile("Profile").getUrl();
+
 
         logOutbtn = view.findViewById(R.id.logOutBtn);
         acc_Profile = view.findViewById(R.id.accountProfile);
@@ -74,10 +73,26 @@ public class AccountFragment extends Fragment {
         gvPost = view.findViewById(R.id.gvPost);
 
         user_allPosts = new ArrayList<>();
-        user_adapter = new PostGVAdapter(getContext(), user_allPosts);
+        user_adapter = new AccountAdapter(getContext(), user_allPosts);
 
         // Setting adapter on the recycler view
         gvPost.setAdapter(user_adapter);
+
+        Bundle bundle = getArguments();
+        // if bottom navigation profile is clicked get the current username
+        // else if username or userprofile is clicked in home, get specific user
+        if(bundle == null) {
+            acc_UserName.setText(ParseUser.getCurrentUser().getUsername());
+            user = ParseUser.getCurrentUser();
+            profile = ParseUser.getCurrentUser().getParseFile("Profile").getUrl();
+
+        }else{
+            Post post = Parcels.unwrap(bundle.getParcelable("Post"));
+            acc_UserName.setText(post.getUser().getUsername());
+            user = post.getUser();
+            profile = post.getUser().getParseFile("Profile").getUrl();
+
+        }
 
         queryPost();
 
@@ -89,7 +104,7 @@ public class AccountFragment extends Fragment {
                     .into(acc_Profile);
         }
 
-        acc_UserName.setText(ParseUser.getCurrentUser().getUsername());
+
 
         // Log out button
         logOutbtn.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +122,7 @@ public class AccountFragment extends Fragment {
     private void queryPost() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Post.KEY_USER, user);
         query.setLimit(20);
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
         query.findInBackground(new FindCallback<Post>() {

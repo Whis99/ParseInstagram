@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.parseinstagram.CommentActivity;
 import com.example.parseinstagram.PostActivity;
 //import com.example.parseinstagram.UserAllPostActivity;
 import com.example.parseinstagram.fragments.AccountFragment;
@@ -77,6 +78,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView postCreation;
         private ImageView picture, userProfile;
         private LinearLayout container;
+        private TextView comment;
 
 
 
@@ -88,6 +90,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             userProfile = itemView.findViewById(R.id.userProfile);
             postCreation = itemView.findViewById(R.id.accountPostTime);
             container = itemView.findViewById(R.id.userContainer);
+            comment = itemView.findViewById(R.id.postComment);
 
         }
 
@@ -106,8 +109,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         .into(picture);
             }
 
-            Glide.with(context).load(post.getUser().getParseFile("Profile").getUrl()).centerCrop().into(userProfile);
+            Glide.with(context)
+                    .load(post.getUser()
+                            .getParseFile("Profile").getUrl())
+                            .centerCrop()
+                            .into(userProfile);
 
+            // Post is clicked
             picture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -117,6 +125,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
+            //When username or profile picture is clicked
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -129,6 +138,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     accountFragment.setArguments(bundle);
 
                     fragmentManager.beginTransaction().replace(R.id.flContainer, accountFragment).commit();
+                }
+            });
+
+            // Comment button is clicked
+            comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CommentActivity.class);
+                    intent.putExtra("Post", Parcels.wrap(post));
+                    context.startActivity(intent);
                 }
             });
 

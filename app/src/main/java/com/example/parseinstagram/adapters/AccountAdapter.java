@@ -34,9 +34,9 @@ import com.example.parseinstagram.models.Post;
 
 import java.util.ArrayList;
 
-public class PostGVAdapter extends ArrayAdapter<Post> {
+public class AccountAdapter extends ArrayAdapter<Post> {
 
-    public PostGVAdapter(@NonNull Context context, ArrayList<Post> posts) {
+    public AccountAdapter(@NonNull Context context, ArrayList<Post> posts) {
         super(context, 0, posts);
     }
 
