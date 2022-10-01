@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.parseinstagram.R;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
@@ -52,7 +54,11 @@ public class AccountAdapter extends ArrayAdapter<Post> {
 
         ImageView userPostContent = listitemView.findViewById(R.id.userPostContent);
         Post post = getItem(position);
-        Glide.with(getContext()).load(post.getImage().getUrl()).into(userPostContent);
+        Glide.with(getContext())
+                .load(post.getImage().getUrl())
+                .centerCrop()
+                .transform(new RoundedCorners(20))
+                .into(userPostContent);
 
         return listitemView;
     }

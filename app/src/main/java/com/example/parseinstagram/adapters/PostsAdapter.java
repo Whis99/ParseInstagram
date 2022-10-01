@@ -80,6 +80,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private ImageView picture, userProfile;
         private LinearLayout container;
         private TextView comment;
+        private TextView like;
 
 
 
@@ -92,6 +93,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             postCreation = itemView.findViewById(R.id.accountPostTime);
             container = itemView.findViewById(R.id.userContainer);
             comment = itemView.findViewById(R.id.postComment);
+            comment = itemView.findViewById(R.id.postComment);
+            like = itemView.findViewById(R.id.postLike);
 
         }
 
@@ -153,6 +156,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
+            // Like button is clicked
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Todo
+
+                }
+            });
         }
     }
 
