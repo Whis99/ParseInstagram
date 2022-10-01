@@ -79,15 +79,15 @@ public class AccountFragment extends Fragment {
         gvPost.setAdapter(user_adapter);
 
         Bundle bundle = getArguments();
-        // if bottom navigation profile is clicked get the current username
-        // else if username or userprofile is clicked in home, get specific user
+//         if bottom navigation profile is clicked get the current username
+//         else if username or userprofile is clicked in home, get specific user
         if(bundle == null) {
             acc_UserName.setText(ParseUser.getCurrentUser().getUsername());
             user = ParseUser.getCurrentUser();
             profile = ParseUser.getCurrentUser().getParseFile("Profile").getUrl();
 
         }else{
-            Post post = Parcels.unwrap(bundle.getParcelable("Post"));
+            Post post = Parcels.unwrap(bundle.getParcelable("post"));
             acc_UserName.setText(post.getUser().getUsername());
             user = post.getUser();
             profile = post.getUser().getParseFile("Profile").getUrl();

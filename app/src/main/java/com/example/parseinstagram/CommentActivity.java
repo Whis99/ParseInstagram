@@ -23,7 +23,6 @@ public class CommentActivity extends AppCompatActivity {
     private TextView cUserName;
     private TextInputLayout TextField;
     private Button button;
-    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
