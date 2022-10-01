@@ -1,4 +1,4 @@
-package com.example.parseinstagram;
+package com.example.parseinstagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parseinstagram.MainActivity;
+import com.example.parseinstagram.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;

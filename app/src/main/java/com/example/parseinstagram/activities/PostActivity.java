@@ -1,4 +1,4 @@
-package com.example.parseinstagram;
+package com.example.parseinstagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.parseinstagram.R;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
 import com.parse.ParseFile;
@@ -56,7 +58,7 @@ public class PostActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(profile)
                     .centerCrop()
-                    .transform(new RoundedCorners(20))
+                    .transform(new CircleCrop())
                     .into(detailProfile);
         }
     }

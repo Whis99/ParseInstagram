@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.example.parseinstagram.LoginActivity;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.parseinstagram.activities.LoginActivity;
 import com.example.parseinstagram.R;
 import com.example.parseinstagram.adapters.AccountAdapter;
 import com.example.parseinstagram.models.Post;
@@ -100,7 +100,7 @@ public class AccountFragment extends Fragment {
             Glide.with(getContext())
                     .load(profile)
                     .centerCrop()
-                    .transform(new RoundedCorners(20))
+                    .transform(new CircleCrop())
                     .into(acc_Profile);
         }
 

@@ -16,8 +16,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.parseinstagram.CommentActivity;
-import com.example.parseinstagram.PostActivity;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.parseinstagram.activities.CommentActivity;
+import com.example.parseinstagram.activities.PostActivity;
 //import com.example.parseinstagram.UserAllPostActivity;
 import com.example.parseinstagram.fragments.AccountFragment;
 import com.example.parseinstagram.helpers.TimeFormatter;
@@ -113,6 +114,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     .load(post.getUser()
                             .getParseFile("Profile").getUrl())
                             .centerCrop()
+                            .transform(new CircleCrop())
                             .into(userProfile);
 
             // Post is clicked
