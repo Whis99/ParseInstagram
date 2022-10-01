@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.parseinstagram.MainActivity;
 import com.example.parseinstagram.R;
 import com.example.parseinstagram.models.Comment;
 import com.example.parseinstagram.models.Post;
@@ -40,6 +41,7 @@ public class CommentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
+        post = Parcels.unwrap(getIntent().getParcelableExtra("Post"));
 
         String profile = ParseUser.getCurrentUser().getParseFile("Profile").getUrl();
 
@@ -62,11 +64,13 @@ public class CommentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = commentField.getText().toString();
                 if (description.isEmpty()) {
-                    Toast.makeText(context, "Comment is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CommentActivity.this, "Comment is empty", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
                     ParseUser currentUser = ParseUser.getCurrentUser();
                     sendComment(description, currentUser);
+                    Intent intent = new Intent(CommentActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
 
