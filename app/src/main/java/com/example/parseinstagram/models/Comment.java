@@ -24,4 +24,8 @@ public class Comment extends ParseObject {
     public ParseUser getUser(){
         return getParseUser(COMMENT_USER);
     }
+
+    public void setUser(ParseUser user){
+        put(COMMENT_USER, user);
+    }
 }
