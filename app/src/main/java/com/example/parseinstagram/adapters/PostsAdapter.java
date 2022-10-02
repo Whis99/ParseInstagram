@@ -2,15 +2,19 @@ package com.example.parseinstagram.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,14 +28,19 @@ import com.example.parseinstagram.fragments.AccountFragment;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Post;
 import com.example.parseinstagram.R;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import org.json.JSONException;
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
-
+    public static final String TAG = "PostsAdapter";
     private Context context;
     private List<Post> posts;
 
@@ -53,7 +62,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
-        holder.bind(post);
+        try {
+            holder.bind(post);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -80,7 +93,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private ImageView picture, userProfile;
         private LinearLayout container;
         private TextView comment;
-        private TextView like;
+        private ImageView like;
+        private int likeCount;
+        private TextView likeCounter;
+        private ArrayList<String> userLikes;
+        ParseUser currentUser;
 
 
 
@@ -95,11 +112,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             comment = itemView.findViewById(R.id.postComment);
             comment = itemView.findViewById(R.id.postComment);
             like = itemView.findViewById(R.id.postLike);
+            likeCounter = itemView.findViewById(R.id.likeCounter);
 
         }
 
-        public void bind(Post post) {
+        public void bind(Post post) throws JSONException {
             String timeFormat = TimeFormatter.getTimeDifference(post.getCreatedAt().toString());
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            userLikes = Post.fromJsonArray(post.getLike());
 
             // Bind the post data to the view elements
             userName.setText(post.getUser().getUsername());
@@ -160,12 +180,54 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Todo
+                    likeCount = post.getLikeCount();
+                    int index;
+
+                    if (!userLikes.contains(currentUser.getObjectId())){
+                        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_heart_);
+                        like.setImageDrawable(drawable);
+                        likeCount++;
+                        index = -1;
+
+                    }else {
+                        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_heart_curvy_outline);
+                        like.setImageDrawable(drawable);
+                        likeCount--;
+                        index = userLikes.indexOf(currentUser.getObjectId());
+                    }
+
+                    likeCounter.setText(String.valueOf(likeCount));
+                    saveLike(post, likeCount, index, currentUser);
+                }
+            });
+        }
+
+        private void saveLike(Post post, int likeCount, int index, ParseUser currentUser) {
+            post.setLikeCount(likeCount);
+
+            if (index == -1){
+                post.setLike(currentUser);
+                userLikes.add(currentUser.getObjectId());
+            }else {
+                userLikes.remove(index);
+                post.removeLike(userLikes);
+            }
+
+            post.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null){
+                        Log.e(TAG, "Error while saving", e);
+                        Toast.makeText(context, "Error while saving", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Log.i(TAG, userLikes.toString());
 
                 }
             });
         }
-    }
-
-
+        }
 }
+
+
+
