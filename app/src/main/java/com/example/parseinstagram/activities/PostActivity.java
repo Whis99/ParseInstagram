@@ -152,13 +152,13 @@ public class PostActivity extends AppCompatActivity {
                         int index;
 
                         if (!userLike.contains(currentUser.getObjectId())){
-                            Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_heart_);
+                            Drawable drawable = ContextCompat.getDrawable(PostActivity.this, R.drawable.ic_heart_);
                             postLike.setImageDrawable(drawable);
                             postLikeCounter++;
                             index = -1;
 
                         }else {
-                            Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_heart_curvy_outline);
+                            Drawable drawable = ContextCompat.getDrawable(PostActivity.this, R.drawable.ic_heart_curvy_outline);
                             postLike.setImageDrawable(drawable);
                             postLikeCounter--;
                             index = userLike.indexOf(currentUser.getObjectId());
