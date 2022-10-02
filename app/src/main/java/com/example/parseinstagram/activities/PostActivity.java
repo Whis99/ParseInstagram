@@ -2,6 +2,8 @@ package com.example.parseinstagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.parseinstagram.R;
+import com.example.parseinstagram.adapters.CommentAdapter;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Comment;
 import com.example.parseinstagram.models.Post;
@@ -39,10 +42,11 @@ public class PostActivity extends AppCompatActivity {
     private ImageView detailProfile, picture2, postLike;
     protected List<String> commentsParse;
     protected List<Comment> comments;
-//    protected CommentAdapter adapter;
+    protected CommentAdapter commentAdapter;
     Context context;
     public static int like;
     public static ArrayList<String> userLike;
+    RecyclerView rvComment;
 
 
     @Override
@@ -66,10 +70,12 @@ public class PostActivity extends AppCompatActivity {
         postLike = findViewById(R.id.postLike2);
         likeCounter = findViewById(R.id.postLikeCounter);
         postComment = findViewById(R.id.postComment2);
+        rvComment = findViewById(R.id.rvPostDetail);
 
         userName2.setText(post.getUser().getUsername());
         description2.setText(username + ": " +post.getDescription());
         postCreation2.setText(timeFormat + " ago");
+        likeCounter.setText(String.valueOf(post.getLike()));
 
         post.getLike();
         commentsParse = Comment.fromJsonArray(post.getLike());
@@ -92,6 +98,15 @@ public class PostActivity extends AppCompatActivity {
         }
 
         comments = new ArrayList<>();
+
+        //Create the adapter
+        commentAdapter = new CommentAdapter(context, comments);
+
+        //Set the adapter on the recyclerView
+        rvComment.setAdapter(commentAdapter);
+
+        //Set The layout manager on the recyclerView
+        rvComment.setLayoutManager(new LinearLayoutManager(context));
 
         // Show post
         ParseFile image = post.getImage();
@@ -143,6 +158,7 @@ public class PostActivity extends AppCompatActivity {
                         likeCounter.setText(String.valueOf(postLikeCounter));
                         saveLike(post, postLikeCounter, index, currentUser);
                     }
+
 
             private void saveLike(Post post, int postLikeCounter, int index, ParseUser currentUser) {
                 post.setLikeCount(like);

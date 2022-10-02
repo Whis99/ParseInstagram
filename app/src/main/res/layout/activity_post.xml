@@ -125,6 +125,11 @@
         android:textColor="@color/white"
         app:fontFamily="sans-serif-medium"
         tools:text="created at" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPostDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
 
 
