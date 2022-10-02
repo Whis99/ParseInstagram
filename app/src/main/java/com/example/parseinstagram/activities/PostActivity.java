@@ -23,8 +23,10 @@ import com.example.parseinstagram.adapters.CommentAdapter;
 import com.example.parseinstagram.helpers.TimeFormatter;
 import com.example.parseinstagram.models.Comment;
 import com.example.parseinstagram.models.Post;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -49,6 +51,7 @@ public class PostActivity extends AppCompatActivity {
     RecyclerView rvComment;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,11 @@ public class PostActivity extends AppCompatActivity {
         String profile = post.getUser().getParseFile("Profile").getUrl();
         String username = post.getUser().getUsername();
 
+        try {
+            userLike = Post.fromJsonArray(post.getLike());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         userName2 = findViewById(R.id.userName2);
@@ -75,12 +83,13 @@ public class PostActivity extends AppCompatActivity {
         userName2.setText(post.getUser().getUsername());
         description2.setText(username + ": " +post.getDescription());
         postCreation2.setText(timeFormat + " ago");
-        likeCounter.setText(String.valueOf(post.getLike()));
+
+        likeCounter.setText(String.valueOf(post.getLikeCount()));
 
         post.getLike();
         commentsParse = Comment.fromJsonArray(post.getLike());
 
-        // get like's user
+        // get user's like
         try {
             userLike = Post.fromJsonArray(post.getLike());
         } catch (JSONException e) {
@@ -158,31 +167,53 @@ public class PostActivity extends AppCompatActivity {
                         likeCounter.setText(String.valueOf(postLikeCounter));
                         saveLike(post, postLikeCounter, index, currentUser);
                     }
+        });
 
+        queryComments();
+    }
 
-            private void saveLike(Post post, int postLikeCounter, int index, ParseUser currentUser) {
-                post.setLikeCount(like);
-
-                if (index == -1){
-                    post.setLike(currentUser);
-                    userLike.add(currentUser.getObjectId());
-                }else {
-                    userLike.remove(index);
-                    post.removeLike(userLike);
+    protected void queryComments() {
+        ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
+        query.include(Comment.COMMENT_USER);
+        query.whereContainedIn("objectId", commentsParse);
+        query.findInBackground(new FindCallback<Comment>() {
+            @Override
+            public void done(List<Comment> commentList, ParseException e) {
+                if (e != null){
+                    Log.e(TAG, "Issue with getting Posts", e);
+                    Toast.makeText(context, "Issue with getting Posts", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                post.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e != null){
-                            Log.e(TAG, "Error while saving", e);
-                            Toast.makeText(context, "Error while saving", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        Log.i(TAG, userLike.toString());
-                    }
-                });
+                comments.addAll(commentList);
+                commentAdapter.notifyDataSetChanged();
+
             }
         });
     }
+
+    private void saveLike(Post post, int postLikeCounter, int index, ParseUser currentUser) {
+        post.setLikeCount(postLikeCounter);
+
+        if (index == -1){
+            post.setLike(currentUser);
+            userLike.add(currentUser.getObjectId());
+        }else {
+            userLike.remove(index);
+            post.removeLike(userLike);
+        }
+
+        post.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null){
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(context, "Error while saving", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.i(TAG, userLike.toString());
+            }
+        });
+    }
+
 }

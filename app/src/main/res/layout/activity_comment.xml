@@ -48,6 +48,7 @@
             android:id="@+id/commentTxt"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:textColorHint="@color/white"
             android:hint="comment" />
 
     </com.google.android.material.textfield.TextInputLayout>
