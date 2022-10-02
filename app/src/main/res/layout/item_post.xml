@@ -58,7 +58,7 @@
                 app:srcCompat="@drawable/ic_heart_curvy_outline" />
 
             <TextView
-                android:id="@+id/likeCounter"
+                android:id="@+id/postLikeCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"

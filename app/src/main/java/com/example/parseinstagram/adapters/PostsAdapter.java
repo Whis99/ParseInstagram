@@ -112,7 +112,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             comment = itemView.findViewById(R.id.postComment);
             comment = itemView.findViewById(R.id.postComment);
             like = itemView.findViewById(R.id.postLike);
-            likeCounter = itemView.findViewById(R.id.likeCounter);
+            likeCounter = itemView.findViewById(R.id.postLikeCounter);
 
         }
 
@@ -139,6 +139,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                             .centerCrop()
                             .transform(new CircleCrop())
                             .into(userProfile);
+
+            // check if heart is enable
+            try{
+                if (userLikes.contains(currentUser.getObjectId())) {
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_heart_);
+                    like.setImageDrawable(drawable);
+                }else {
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_heart_curvy_outline);
+                    like.setImageDrawable(drawable);
+                }
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
 
             // Post is clicked
             picture.setOnClickListener(new View.OnClickListener() {
