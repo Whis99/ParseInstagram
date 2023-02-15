@@ -31,4 +31,4 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='.gif' title='Video Walkthrough' width='' alt='Video 
+<img src='video.gif' title='Video Walkthrough' width='' alt='Video 
